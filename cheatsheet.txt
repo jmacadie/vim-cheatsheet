@@ -1,0 +1,372 @@
+ALL KEY-BINDINGS
+--------------------
+
+  Go here to read all keybindings, useful if you're looking for something
+  http://vimdoc.sourceforge.net/htmldoc/vimindex.html
+
+MOVEMENT
+--------------------
+
+  h         Cursor Left
+  j         Cursor Down
+  k         Cursor Up
+  l         Cursor Right
+
+  w         Cursor forward one token
+  W         Cursor forward one word
+  e         Cursor to end of token
+  E         Cursor to end of word
+  b         Cursor backwards one token
+  B         Cursor backwards one word
+
+  f<char>   Cursor forwards to next instance of <char> on line
+  F<char>   Cursor backwards to next instance of <char> on line
+  t<char>   Cursor forwards to one before next instance of <char> on line
+  T<char>   Cursor backwards to one after next instance of <char> on line
+  ;         Repeat last f, F, t, T
+  ,         Reverse repeat last f, F, t, T
+
+  0         Cursor to start of line
+  ^         Cursor to first character on line
+  $         Cursor to last character on line
+
+  (         Cursor to start of sentence
+  )         Cursor to end of sentence
+  {         Cursor to start of paragraph
+  }         Cursor to end of paragraph
+
+  %         Cursor to matching parenthesis
+  [[        Cursor to function start
+  [{        Cursor to block start
+  ]]        Cursor to next function start
+  ]}        Cursor to next block start
+
+  <C-d>     Cursor move half a page down
+  <C-u>     Cursor move half a page up
+  H         Cursor to top of page (high)
+  M         Cursor to top of page (middle)
+  L         Cursor to top of page (low)
+
+  <...>G    Cursor to line <...>
+  gg        Cursor to first line in document
+  G         Cursor to last line in document
+
+  /<...>    Find <...>
+  ?<...>    Reverse find <...>
+  *         Find next occurrence of token under cursor
+  #         Find previous occurrence of token under cursor
+  n         Repeat last Find forwards
+  N         Repeat last Find backwards
+
+  ``        Undo last jump (move back to last position)
+  <C-o>     Move backwards through jump history
+  <C-i>     Move forwards through jump history
+
+  zz        Scroll page so cursor is in middle, cursor doesn't move
+
+
+INSERT MODE
+--------------------
+
+  i         Enter INSERT mode before cursor
+  I         Enter INSERT mode at first character on line
+  a         Enter INSERT mode after cursor
+  A         Enter INSERT mode after last character on line
+
+  o         Add new line below and enter INSERT mode
+  O         Add new line above and enter INSERT mode
+
+  s         Delete current character and enter INSERT mode
+  S         Delete current line and enter INSERT mode
+
+  c{mov}    Delete text covered by move and then enter INSERT mode
+  C         Delete line from cursor to end and then enter INSERT mode
+  cc        Delete whole line and then enter INSERT mode
+
+
+REPLACE MODE
+--------------------
+
+  r<char>   Delete current character, replace it with <char>
+  R         Enter REPLACE mode. Overwrites text until ESC out
+
+
+DELETE (CUT), COPY (YANK) & PASTE
+--------------------
+All deletes also put text in the clipboard so are really cuts
+
+  x         Delete character at cursor
+  X         Delete character before cursor (backspace)
+
+  d{mov}    Delete range covered by movement
+  D         Delete to end of line
+  dd        Delete current line
+
+  y{mov}    Copy (yank) range covered by movement
+  Y         Copy (yank) current line
+  yy        Copy (yank) current line
+
+  p         Paste after the cursor
+  P         Paste before the cursor
+
+
+TEXT OBJECT SELECTION
+--------------------
+
+  When moving with c, d & y can additionally match within a scope
+  Follows form:
+
+  [count][match type][scope selector] e.g. 2i{
+
+  count
+  The number of nested layers out to search. If omitted current scope only used
+
+  match type
+  i         Inner match (excludes matched brackets / quotes / whitespace)
+  a         Outer match (includes matched brackets / quotes / whitespace)
+
+  scope selector
+  w             token
+  W             word
+  s             sentence
+  p             paragraph
+  t             tag (HTML or XML tags)
+  ( or ) or b   Everything between () brackets
+  [ or ]        Everything between [] brackets
+  { or }        Everything between {} brackets
+  < or >        Everything between <> brackets
+  "             Everything between "" quotes
+  '             Everything between '' quotes
+  `             Everything between `` quotes
+
+
+FIND AND REPLACE
+--------------------
+
+  *** Pure find commands listed under MOVEMENT
+
+  :s        Find and replace command (:substitute)
+  &         Repeat last substitution
+
+  Full usage:
+  :[range]s/<f...>/<r...>/[flags]
+
+  Range:
+  Nothing   Just current line
+  %         Whole document
+  2,5       Lines 2 to 5 (inclusive)
+  ^,.       Start of document to current line
+  .,$       Current line to end of document
+  .,+2      Current line and the next two lines
+
+  <f...>:
+  Follows regex rules so need to escape metacharcters
+
+  Flags:
+  g         Find and replace all instances on a line, if omitted will just find
+            and replace the first instance on (each) line
+  c         Ask for confirmation
+  i         Case insensitive match
+
+
+MISC
+--------------------
+
+  .         Repeat last action
+
+  u         Undo last action
+  <C-r>     Redo last undo
+
+  J         Join current line with line below
+
+
+CHANGE CASE
+--------------------
+
+  ~         Toggle case of character under cursor
+  g~{mov}   Toggle case of characters selected by movement
+  g~~       Toggle case of whole line
+
+  gU{mov}   Make characters selected by movement uppercase
+  gUU       Make whole line uppercase
+
+  gu{mov}   Make characters selected by movement lowercase
+  guu       Make whole line lowercase
+
+  In Visual modes can just use ~, u & U directly on selected text
+
+
+INDENTATION
+--------------------
+
+  >{mov}    Indent all lines covered by movement
+  <{mov}    Unindent all lines covered by movement
+  >>        Indent current line
+  <<        Unindent current line
+  All indents can be preceded by a number to repeat multiple times
+
+  ={mov}    Auto-indent code covered by movement
+  =%        Indent code between parenthesis
+
+
+VISUAL MODE
+--------------------
+
+  v         Enter visual mode
+  V         Enter line visual mode
+  <C-v>     Enter block visual mode
+  note doesn't work bash on windows and neither does the proposed solution of
+  <C-q>. I have mapped gV to the same functionality by adding the following line
+  to my .vimrc
+  nmap gV <C-v><CR>
+
+  o         Move cursor to other end of visual select area
+  O         Move cursor to other end of visual select line
+
+  r<char>   Replace selected text with <char> repeated to pad out same area
+  i         Enter insert mode at top left of selected text. When press <ESC>
+            will enter same text on every selected line
+  c         As with i but will delete selected text first
+
+
+COMMAND LINE
+--------------------
+
+  :w        Save file (:write)
+  :q        Close file (:quit)
+  :wq       Save & close file
+  :q!       Close file without saving
+  :qa       Close all files
+
+  :e <fn>   Open file <fn> (:edit)
+
+  :!<...>   Execute <...> on the command line
+  :!!<...>  Execute <...> on the command line, insert output in file
+
+  q/ or q?  Open Command Line window for previous searches
+  q:        Open Command Line window for previous commands
+
+  In Command Line window:
+  Most normal Vim commands works as usual, so you can edit prior commands
+  <C-c> <C-c>   Cancel to command line
+  <CR>          To execute the current line
+
+
+FOLDING
+--------------------
+
+  zc        Fold section
+  zo        Unfold section (one layer)
+  zO        Unfold section (all layers)
+  za        Toggle fold (zc / zo)
+
+  zm        Fold all (one layer)
+  zM        Fold all (all layers)
+  zr        Unfold all (one layer)
+  zR        Unfold all (all layers)
+
+
+BUFFERS
+--------------------
+
+  :ls       Show all buffers(:buffers)
+  :b<num>   Switch to <num> buffer
+  :bd<num>  Close <num> buffer
+
+
+WINDOWS
+--------------------
+
+  :sp       Split windows horizontally (:split)
+  :vsp      Split windows vertically (:vsplit)
+
+  <C-w> <C-w>   switch windows
+
+  <C-w> +       Make current window bigger (horizontal)
+  <C-w> -       Make current window smaller (horizontal)
+  <C-w> >       Make current window bigger (vertical)
+  <C-w> <       Make current window smaller (vertical)
+  <C-w> =       Make windows same size
+
+  <C-w> q       Close current window
+  <C-w> o       Close all windows but the current one
+                Also <ESC> :on works the same way
+
+REGISTERS
+--------------------
+
+  :reg      Show all registers
+  "<char>   Use register <char>
+            Can be used before delete (x, d, s, c), copy (y) or paste (p, P)
+
+  <C-r> <char> paste register in INSERT or COMMAND mode
+
+
+MARKS
+--------------------
+
+  :marks    Show all marks
+  m<char>   Set mark labelled with <char>
+  `<char>   Goto mark <char>
+
+
+MACROS
+--------------------
+
+  q<char>   Start recording macro <char>
+  q         Stop recording, has to be in NORMAL mode
+
+  @<char>   Execute macro <char>
+  @@        Execute last macro
+
+  Macros are written in a register so can:
+  :new        # new buffer
+  "<char>p    # paste buffer (macro) into new buffer
+  [edit]
+  0"<char>y$  # goto beginning of line, yank into register, to end of line
+  :bd!        # close new buffer without saving
+  @<char>     # use edited macro
+
+
+SPELLING
+--------------------
+
+  :setlocal spell spelllang=en_gb   Switch spell check on
+  :set nospell                      Switch spell check off
+  gs                                Toggle spelling on & off
+                                    Only works because of setting in my .vimrc
+
+  ]s                                Move to next mis-spelled word
+  [s                                Move to last mis-spelled word
+  z=                                Open spell corrections
+
+  zg                                Add 'mis-spelled' to dictionary
+  zw                                Mark word as mis-spelled (i.e. delete from
+                                    dictionary)
+
+  <C-n> or <C-p>                    Initiate autocomplete
+  <C-n> or <C-p>                    Cycle forwards/backwards through suggestions
+  <C-y>                             Accept suggestion
+  <C-e>                             Quit autocomplete
+
+HELP
+--------------------
+
+  :h                Open Vim help
+  :vert h           Open Vim help in vertical window
+  :h {command}      Search Vim help for {command}
+
+  <C-d>             Show possible command completions
+  <TAB>             Cycle through command completions
+
+  <C-]>             Follow hyperlink (between |bars|) in help doc
+  <C-t>             Jump back last hyperlink
+
+  :helpgrep {str}   Perform grep search on Vim help files
+  :cnext            Jump to next helpgrep match
+  :cprev            Jump to previous helpgrep match
+  :cc               Jump to previous helpgrep match
+  :copen            Open separate window with all helpgrep matches
+
+  :q                Quit help (really just close buffer command)
+
