@@ -370,3 +370,104 @@ HELP
 
   :q                Quit help (really just close buffer command)
 
+NVIM ADD-INS
+********************
+
+PACKER
+https://github.com/wbthomason/packer.nvim
+-------------------
+  Save lua/plug.lua and then run ':luafile %' first!
+
+  :PackerStatus     List of currently imstalled add-ins
+  :PackerSync       Clean, update ,install and then compiles add-ins
+
+  :PackerClean      Removes unused or disabled add-ins
+  :PackerInstall    Install missing add-ins
+
+LSP Saga
+https://github.com/glepnir/lspsaga.nvim
+--------------------
+  < >ca               Code action
+  < >gh               LSP definition & references finder
+  < >gd               Peek definition
+  K                   Hover doc
+  < >o                Outline
+
+TELESCOPE
+https://github.com/nvim-telescope/telescope.nvim
+Set in .config/nvim/lua/keys
+--------------------
+  < >ff               Find files
+  < >fs               Live grep
+  < >fc               Find string under cursor
+  < >fb               Buffers
+  < >fh               Help
+  < >ft               Todo
+
+  Git
+  < >gc               List commits
+  < >gfc              List commits for current file
+  < >gb               List branches
+  < >gs               List current changes
+
+HOP
+https://github.com/phaazon/hop.nvim
+Set in .config/nvim/lua/keys
+--------------------
+  < >hh               Hop 1 char
+  < >hj               Hop 2 chars
+  < >H                All words
+  :HopPattern       Hop to grep pattern
+  :HopLine          Hop to line
+  < >hl             Hop to first char of any line
+
+TROUBLE
+https://github.com/folke/trouble.nvim
+Set in .config/nvim/lua/keys
+--------------------
+  < >xx               Toggle on/off
+  < >xw               Trouble - Workspace
+  < >xd               Trouble - Document
+  < >xl               Trouble - Location List
+  < >xq               Trouble - Quickfix
+  < >xt               Trouble - TODOs
+  gR                Trouble - LSP References
+
+In window commands:
+  q                 Close window
+  <ESC>             Cancel
+  r                 Refresh list
+  m                 Toggle between workspce and document
+  
+  <CR> or <TAB>     Jump to entry in code
+  <C-x>             Open in split
+  <C-v>             Open in vsplit
+  o                 Jump and close list
+  
+  p                 Preview the diagnostic location
+  P                 Toggle auto-preview
+  K                 OPen pop-up with full multi-line message
+
+FOATERM
+https://github.com/voldikss/vim-floaterm
+Set in .config/nvim/lua/keys
+--------------------
+  < >tn               New terminal window
+  < >tx               Toggle hiding / showing terminal window
+  <ESC>             Close terminal
+  
+RUST TOOLS
+https://github.com/simrat39/rust-tools.nvim
+Set in lua/setup.lua
+--------------------
+  <C-Space>         Open hover window
+  < >a                Code action group
+
+NVIM TREE
+https://github.com/nvim-tree/nvim-tree.lua
+Set in .config/nvim/lua/keys
+--------------------
+  < >e                Toggle file tree
+
+
+
